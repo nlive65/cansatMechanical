@@ -24,9 +24,12 @@ def main()->int:
         CdCalculated=[]
         vTerminalCalculated=[]
         v=0
+        x=0
         while x>0
             #you will be given Deltax based on the data that you take
             #you will be given tInterval based on the frame rate
+            #Will want a position vs time graph to show descent
+            Deltax=x-xprime
             vprime=findvelocity(Deltax,tInterval)
             Cd=findCd(v,A,Deltax,tInterval,Rho,m)
             vTerminal=findvTerminal(Cd,m,A,Rho)
@@ -34,9 +37,9 @@ def main()->int:
             vTerminalCalculated.append(vTerminal)
             print(str(vTerminal)+" m/s, "+str(Cd))
             v=vprime
-            x=x-Deltax
+            x=x-xprime
         vTerminalAverage=np.average(vTerminalCalculated,axis=0)
         CdAverage=np.average(CdCalculated,axis=0)
-        print("Average calculated terminal velocity "+str(vTerminalAverage)+" m/s")
-        print("Average calculated Cd of "+str(CdAverage))
+        print("Average calculated terminal velocity "+str(vTerminalAverage)+" m/s") #Would like a distributtion graph to show data variation
+        print("Average calculated Cd of "+str(CdAverage)) #Would like a graph showing the distribution of calculated Cd to show variation in our data set
         
